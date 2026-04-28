@@ -6,4 +6,6 @@ This MQTT client can send or receive MQTT messages and display the subscribed me
 
 This MQTT client is designed for quick debugging of MQTT broker communication. Each MQTT client consumes CPU resources, so it is not suitable for large-scale deployment, as it may slow down the station's performance. It is recommended to use our other BQL query tool to convert large amounts of data points into JSON format via BQL, and then send the data through the MQTT client.
 
+Apr 28, 2026: We have only tested the compatibility with EMQX. Currently, the identified issues include: if a single message carries a large amount of data (such as over 200 JSON-formatted Niagara points data), it will occupy the station's memory space. We are currently making further adjustments. If you discover any issues, feel free to email me to inform me.
+
 The JAR package has been successfully tested and runs on N4.14 version, and requires importing the gline.pem certificate. If you are further interested in this, please contact us at jason.zhang@gline-net.com.
