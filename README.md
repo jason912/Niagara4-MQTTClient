@@ -9,6 +9,8 @@ This MQTT client is designed for quick debugging of MQTT broker communication. E
 
 Apr 28, 2026 corrections:
 Revised the Client ID to be read only and avoid conflict when copy from existing MQTT client.
-Add the log enable/disable button. The log button will display the MQTT details in platform debug but not in the module. This will avoid the memory consumption to the Niagara station.
+Add the log enable/disable button. The log button will display the MQTT RX only details (no TX details) in platform debug but not in the module. This will avoid the memory consumption to the Niagara station.
+<img width="2616" height="39" alt="image" src="https://github.com/user-attachments/assets/0dbb8076-4e01-4fb5-ad0e-f5e0360902e4" />
+
 
 The JAR package has been successfully tested and runs on N4.14 version and EMQX, and requires importing the gline.pem certificate. If you are further interested in this, please contact us at jason.zhang@gline-net.com. If you discover any issues, feel free to email me to inform me.
