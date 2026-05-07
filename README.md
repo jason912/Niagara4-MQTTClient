@@ -23,4 +23,8 @@ May 6, 2026 corrections:
 The MQTT broker authentication has been updated. We now support QoS 0/1/2 messages and encrypted username/password logins for EMQX and Aedes (Node-RED) brokers. SSL authentication is not available at this time. Contact us if you need additional features.
 <img width="920" height="155" alt="image" src="https://github.com/user-attachments/assets/f5de9c63-5cc1-4362-ab9b-31a24dcaeae9" />
 
+May 7 2026 corrections:
+Removed the log enable/disable function. All mqtt logs will be displayed in the platform director. 
+<img width="2588" height="438" alt="image" src="https://github.com/user-attachments/assets/23180827-e6b8-4c24-b816-aecc9f1cf874" />
+
 The JAR package has been successfully tested and runs on N4.14 version, EMQX and Node-Red Aedes MQTT broker, and requires importing the gline.pem certificate. If you are further interested in this, please contact us at jason.zhang@gline-net.com. If you discover any issues, feel free to email me to inform me.
