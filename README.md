@@ -1,5 +1,5 @@
 # Niagara4-MQTTClient
-MQTT client running on Niagara 4 and communicate messages
+MQTT client running on Niagara 4 and communicate messages. This is a license-free tool intended solely for MQTT debugging within Niagara Station. For commercial use, please purchase the official version from Tridium.
 This MQTT client can send or receive MQTT messages and display the subscribed messages in the message panel. Whenever a new message, topic, or broker parameter is added or modified, it is necessary to first disable and then re-enable the MQTT client for the changes to take effect. The associated subscribed or published messages can be viewed in the platform director debug.
 
 <img width="1885" height="1146" alt="image" src="https://github.com/user-attachments/assets/55db2abb-8435-45ec-9c6c-523ae00fa283" />
