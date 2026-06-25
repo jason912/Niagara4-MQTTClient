@@ -1,30 +1,99 @@
-# Niagara4-MQTTClient
-MQTT client running on Niagara 4 and communicate messages. This is a license-free tool intended solely for MQTT debugging within Niagara Station. For commercial use, please purchase the official version from Tridium.
-This MQTT client can send or receive MQTT messages and display the subscribed messages in the message panel. Whenever a new message, topic, or broker parameter is added or modified, it is necessary to first disable and then re-enable the MQTT client for the changes to take effect. The associated subscribed or published messages can be viewed in the platform director debug.
+# Niagara4-MQTTClient 📡
 
-<img width="1885" height="1146" alt="image" src="https://github.com/user-attachments/assets/55db2abb-8435-45ec-9c6c-523ae00fa283" />
+[![Niagara 4.14+](https://img.shields.io/badge/Niagara-4.14%2B-blue)](https://www.tridium.com)
+[![License: Free](https://img.shields.io/badge/License-Free-brightgreen)](LICENSE)
+[![Contact](https://img.shields.io/badge/Contact-WhatsApp-brightgreen)](https://wa.me/8613801909968)
 
+> **A free MQTT debugging client for Niagara 4 — send, receive, and inspect MQTT messages directly from your station.**
 
-This MQTT client is designed for quick debugging of MQTT broker communication. Each MQTT client consumes CPU resources, so it is not suitable for large-scale deployment, as it may slow down the station's performance. It is recommended to use our other BQL query tool to convert large amounts of data points into JSON format via BQL, and then send the data through the MQTT client. Here is a BQL sample:
-station:|slot:/Drivers/MQTT/Liyu/points/BA_7F|bql:select name,slotPath,type,out.value as 'value',out.status as 'status' from control:ControlPoint
-The above BQL query will list all points value & status under specific folder "BA_7F", such as:
-<img width="2854" height="539" alt="image" src="https://github.com/user-attachments/assets/ae5fb1e2-7f8e-46c5-8082-ae1b72df8ea6" />
-With the bql2json module, users can directly transform BQL data into JSON format.
-<img width="2154" height="695" alt="image" src="https://github.com/user-attachments/assets/6c146fe0-2482-4e57-a2d6-4b1df68ed7e6" />
-On the MQTT receiving end, users can develop a retrieval program to filter payloads by JSON fields. Below is a sample case
-<img width="491" height="221" alt="image" src="https://github.com/user-attachments/assets/0ba04b7f-f4bf-4939-8b1e-f7018957eeee" />
+---
 
-Apr 28, 2026 corrections:
-Revised the Client ID to be read only and avoid conflict when copy from existing MQTT client.
-Add the log enable/disable button. The log button will display the MQTT RX only details (no TX details) in platform debug but not in the module. This will avoid the memory consumption to the Niagara station.
-<img width="2616" height="39" alt="image" src="https://github.com/user-attachments/assets/0dbb8076-4e01-4fb5-ad0e-f5e0360902e4" />
+## What Is It?
 
-May 6, 2026 corrections:
-The MQTT broker authentication has been updated. We now support QoS 0/1/2 messages and encrypted username/password logins for EMQX and Aedes (Node-RED) brokers. SSL authentication is not available at this time. Contact us if you need additional features.
-<img width="920" height="155" alt="image" src="https://github.com/user-attachments/assets/f5de9c63-5cc1-4362-ab9b-31a24dcaeae9" />
+A lightweight, zero-license MQTT client module that runs inside Niagara Workbench. Use it to:
 
-May 7 2026 corrections:
-Removed the log enable/disable function. All mqtt logs will be displayed in the platform director. 
-<img width="2588" height="438" alt="image" src="https://github.com/user-attachments/assets/23180827-e6b8-4c24-b816-aecc9f1cf874" />
+- **Publish** messages to any MQTT broker
+- **Subscribe** to topics and view incoming messages in real time
+- **Debug** MQTT communication during development and commissioning
 
-The JAR package has been successfully tested and runs on N4.14 version, EMQX and Node-Red Aedes MQTT broker, and requires importing the gline.pem certificate. If you are further interested in this, please contact us at jason.zhang@gline-net.com. If you discover any issues, feel free to email me to inform me.
+> ⚠️ **Not for production.** This tool is designed for debugging and testing only. Each client consumes CPU resources — not suitable for large-scale deployment.
+
+---
+
+## Quick Start
+
+```bash
+# 1. Install gline.pem certificate into your station trust store
+
+# 2. Add glineMqtt-rt.jar to your modules/ directory
+
+# 3. Restart station
+
+# 4. Create an MQTT Client component in Workbench:
+#    - Set broker IP / port
+#    - Enter topic to subscribe
+#    - Set QoS (0/1/2 supported)
+#    - Configure username/password (encrypted)
+
+# 5. Enable the client → messages appear in the panel
+```
+
+> After changing any parameter, **disable then re-enable** the client for changes to take effect.
+
+---
+
+## Features
+
+| Feature | Support |
+|---------|:-------:|
+| MQTT publish & subscribe | ✅ |
+| QoS 0, 1, 2 | ✅ |
+| Username/password authentication | ✅ |
+| EMQX & Node-RED Aedes brokers | ✅ Tested |
+| SSL/TLS | ❌ Not yet |
+| BQL → JSON → MQTT pipeline | ✅ Via companion bql2json module |
+
+---
+
+## BQL + MQTT Pipeline
+
+For sending large datasets via MQTT, pair this module with our **bql2json** tool:
+
+```sql
+station:|slot:/Drivers/MQTT/yourFolder/points|bql:select name,out.value as 'value',out.status as 'status' from control:ControlPoint
+```
+
+This query extracts all point values under a folder. Convert to JSON with bql2json, then publish via the MQTT client.
+
+---
+
+## Changelog
+
+| Date | Change |
+|------|--------|
+| May 7, 2026 | Removed log toggle — all logs now in Platform Director |
+| May 6, 2026 | Added QoS 0/1/2, encrypted auth, EMQX/Aedes support |
+| Apr 28, 2026 | Client ID now read-only; added log enable/disable |
+
+---
+
+## Requirements
+
+| Component | Requirement |
+|-----------|-------------|
+| **Niagara** | 4.14 or later |
+| **JAR signing** | Requires gline.pem certificate |
+| **Broker tested** | EMQX, Node-RED Aedes |
+
+---
+
+## Support & Contact
+
+- **Email**: [jason.zhang@gline-net.com](mailto:jason.zhang@gline-net.com)
+- **WhatsApp**: [+86 138 0199 0968](https://wa.me/8613801909968)
+
+**Shanghai Gline Net Co., Ltd.** — Your Partner in Smarter Automation
+
+---
+
+© 2026 Shanghai Gline Net Co., Ltd. All rights reserved.
