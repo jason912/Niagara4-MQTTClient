@@ -23,7 +23,7 @@ A lightweight, zero-license MQTT client module that runs inside Niagara Workbenc
 ## Quick Start
 
 ```bash
-# 1. Install gline.pem certificate into your station trust store
+# 1. Install the public gline.pem certificate (certificate only -- it contains no private key) into your station trust store
 
 # 2. Add glineMqtt-rt.jar to your modules/ directory
 
@@ -82,7 +82,7 @@ This query extracts all point values under a folder. Convert to JSON with bql2js
 | Component | Requirement |
 |-----------|-------------|
 | **Niagara** | 4.14 or later |
-| **JAR signing** | Requires gline.pem certificate |
+| **JAR signing** | Requires the public gline.pem certificate imported into the station trust store (certificate only, no private key) |
 | **Broker tested** | EMQX, Node-RED Aedes |
 
 ---
